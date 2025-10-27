@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -31,6 +31,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.account.ApiClient;
 /**
  * The total usage of all API keys of the subscription for the requested period.
  */
@@ -39,21 +40,24 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   TotalUsage.JSON_PROPERTY_TRANSACTIONS,
   TotalUsage.JSON_PROPERTY_REQUESTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-06T11:23:34.887389Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T08:42:36.875563401Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class TotalUsage {
   public static final String JSON_PROPERTY_SERVICES = "services";
+  @javax.annotation.Nullable
   private List<TotalServiceUsage> services;
 
   public static final String JSON_PROPERTY_TRANSACTIONS = "transactions";
+  @javax.annotation.Nullable
   private Double transactions;
 
   public static final String JSON_PROPERTY_REQUESTS = "requests";
+  @javax.annotation.Nullable
   private Integer requests;
 
   public TotalUsage() { 
   }
 
-  public TotalUsage services(List<TotalServiceUsage> services) {
+  public TotalUsage services(@javax.annotation.Nullable List<TotalServiceUsage> services) {
     this.services = services;
     return this;
   }
@@ -66,14 +70,13 @@ public class TotalUsage {
     return this;
   }
 
-   /**
+  /**
    * The total usage by service for the requested period. Only services which have been used in the requested period will be returned.
    * @return services
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_SERVICES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public List<TotalServiceUsage> getServices() {
     return services;
   }
@@ -81,24 +84,23 @@ public class TotalUsage {
 
   @JsonProperty(JSON_PROPERTY_SERVICES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setServices(List<TotalServiceUsage> services) {
+  public void setServices(@javax.annotation.Nullable List<TotalServiceUsage> services) {
     this.services = services;
   }
 
 
-  public TotalUsage transactions(Double transactions) {
+  public TotalUsage transactions(@javax.annotation.Nullable Double transactions) {
     this.transactions = transactions;
     return this;
   }
 
-   /**
+  /**
    * Transactions charged in total.
    * @return transactions
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_TRANSACTIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Double getTransactions() {
     return transactions;
   }
@@ -106,24 +108,23 @@ public class TotalUsage {
 
   @JsonProperty(JSON_PROPERTY_TRANSACTIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTransactions(Double transactions) {
+  public void setTransactions(@javax.annotation.Nullable Double transactions) {
     this.transactions = transactions;
   }
 
 
-  public TotalUsage requests(Integer requests) {
+  public TotalUsage requests(@javax.annotation.Nullable Integer requests) {
     this.requests = requests;
     return this;
   }
 
-   /**
+  /**
    * Requests sent in total.
    * @return requests
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_REQUESTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getRequests() {
     return requests;
   }
@@ -131,7 +132,7 @@ public class TotalUsage {
 
   @JsonProperty(JSON_PROPERTY_REQUESTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequests(Integer requests) {
+  public void setRequests(@javax.annotation.Nullable Integer requests) {
     this.requests = requests;
   }
 
@@ -224,12 +225,12 @@ public class TotalUsage {
 
     // add `transactions` to the URL query string
     if (getTransactions() != null) {
-      joiner.add(String.format("%stransactions%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTransactions()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%stransactions%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTransactions()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `requests` to the URL query string
     if (getRequests() != null) {
-      joiner.add(String.format("%srequests%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getRequests()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%srequests%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRequests()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     return joiner.toString();

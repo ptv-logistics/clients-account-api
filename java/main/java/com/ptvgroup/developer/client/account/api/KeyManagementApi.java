@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -46,7 +46,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-06T11:23:34.887389Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T08:42:36.875563401Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class KeyManagementApi {
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
@@ -138,7 +138,6 @@ public class KeyManagementApi {
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-		localVarRequestBuilder.header("User-Agent","ptv-generated java client");
 
     String localVarPath = "/api-keys";
 
@@ -170,6 +169,7 @@ public class KeyManagementApi {
     }
     return localVarRequestBuilder;
   }
+
   /**
    * 
    * Delete an API key.
@@ -228,7 +228,6 @@ public class KeyManagementApi {
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-		localVarRequestBuilder.header("User-Agent","ptv-generated java client");
 
     String localVarPath = "/api-keys/{apiKey}"
         .replace("{apiKey}", ApiClient.urlEncode(apiKey.toString()));
@@ -246,6 +245,7 @@ public class KeyManagementApi {
     }
     return localVarRequestBuilder;
   }
+
   /**
    * 
    * Get all API keys of the current subscription.
@@ -295,7 +295,6 @@ public class KeyManagementApi {
   private HttpRequest.Builder getApiKeysRequestBuilder() throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-		localVarRequestBuilder.header("User-Agent","ptv-generated java client");
 
     String localVarPath = "/api-keys";
 
@@ -312,6 +311,7 @@ public class KeyManagementApi {
     }
     return localVarRequestBuilder;
   }
+
   /**
    * 
    * Update the description of an API key.
@@ -373,7 +373,6 @@ public class KeyManagementApi {
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-		localVarRequestBuilder.header("User-Agent","ptv-generated java client");
 
     String localVarPath = "/api-keys/{apiKey}"
         .replace("{apiKey}", ApiClient.urlEncode(apiKey.toString()));
@@ -406,4 +405,5 @@ public class KeyManagementApi {
     }
     return localVarRequestBuilder;
   }
+
 }

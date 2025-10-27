@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -29,6 +29,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.account.ApiClient;
 /**
  * BillingPeriod
  */
@@ -36,30 +37,31 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   BillingPeriod.JSON_PROPERTY_START_DATE,
   BillingPeriod.JSON_PROPERTY_END_DATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-06T11:23:34.887389Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T08:42:36.875563401Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class BillingPeriod {
   public static final String JSON_PROPERTY_START_DATE = "startDate";
+  @javax.annotation.Nullable
   private LocalDate startDate;
 
   public static final String JSON_PROPERTY_END_DATE = "endDate";
+  @javax.annotation.Nullable
   private LocalDate endDate;
 
   public BillingPeriod() { 
   }
 
-  public BillingPeriod startDate(LocalDate startDate) {
+  public BillingPeriod startDate(@javax.annotation.Nullable LocalDate startDate) {
     this.startDate = startDate;
     return this;
   }
 
-   /**
+  /**
    * The start date of the billing period formatted according to [RFC 3339](https://tools.ietf.org/html/rfc3339).
    * @return startDate
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_START_DATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public LocalDate getStartDate() {
     return startDate;
   }
@@ -67,24 +69,23 @@ public class BillingPeriod {
 
   @JsonProperty(JSON_PROPERTY_START_DATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStartDate(LocalDate startDate) {
+  public void setStartDate(@javax.annotation.Nullable LocalDate startDate) {
     this.startDate = startDate;
   }
 
 
-  public BillingPeriod endDate(LocalDate endDate) {
+  public BillingPeriod endDate(@javax.annotation.Nullable LocalDate endDate) {
     this.endDate = endDate;
     return this;
   }
 
-   /**
+  /**
    * The end date of the billing period formatted according to [RFC 3339](https://tools.ietf.org/html/rfc3339).
    * @return endDate
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_END_DATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public LocalDate getEndDate() {
     return endDate;
   }
@@ -92,7 +93,7 @@ public class BillingPeriod {
 
   @JsonProperty(JSON_PROPERTY_END_DATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEndDate(LocalDate endDate) {
+  public void setEndDate(@javax.annotation.Nullable LocalDate endDate) {
     this.endDate = endDate;
   }
 
@@ -173,12 +174,12 @@ public class BillingPeriod {
 
     // add `startDate` to the URL query string
     if (getStartDate() != null) {
-      joiner.add(String.format("%sstartDate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getStartDate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sstartDate%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStartDate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `endDate` to the URL query string
     if (getEndDate() != null) {
-      joiner.add(String.format("%sendDate%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getEndDate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sendDate%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEndDate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     return joiner.toString();

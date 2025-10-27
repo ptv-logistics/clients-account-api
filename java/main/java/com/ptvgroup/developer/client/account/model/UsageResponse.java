@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -33,6 +33,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.account.ApiClient;
 /**
  * UsageResponse
  */
@@ -41,21 +42,24 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   UsageResponse.JSON_PROPERTY_TOTAL,
   UsageResponse.JSON_PROPERTY_BILLING_PERIODS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-06T11:23:34.887389Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T08:42:36.875563401Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class UsageResponse {
   public static final String JSON_PROPERTY_API_KEYS = "apiKeys";
+  @javax.annotation.Nullable
   private List<ApiKeyUsage> apiKeys;
 
   public static final String JSON_PROPERTY_TOTAL = "total";
+  @javax.annotation.Nullable
   private TotalUsage total;
 
   public static final String JSON_PROPERTY_BILLING_PERIODS = "billingPeriods";
+  @javax.annotation.Nullable
   private List<BillingPeriod> billingPeriods;
 
   public UsageResponse() { 
   }
 
-  public UsageResponse apiKeys(List<ApiKeyUsage> apiKeys) {
+  public UsageResponse apiKeys(@javax.annotation.Nullable List<ApiKeyUsage> apiKeys) {
     this.apiKeys = apiKeys;
     return this;
   }
@@ -68,14 +72,13 @@ public class UsageResponse {
     return this;
   }
 
-   /**
+  /**
    * This list contains the usage by API key. Only API keys which have been used in the requested period will be returned.
    * @return apiKeys
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_API_KEYS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public List<ApiKeyUsage> getApiKeys() {
     return apiKeys;
   }
@@ -83,24 +86,23 @@ public class UsageResponse {
 
   @JsonProperty(JSON_PROPERTY_API_KEYS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setApiKeys(List<ApiKeyUsage> apiKeys) {
+  public void setApiKeys(@javax.annotation.Nullable List<ApiKeyUsage> apiKeys) {
     this.apiKeys = apiKeys;
   }
 
 
-  public UsageResponse total(TotalUsage total) {
+  public UsageResponse total(@javax.annotation.Nullable TotalUsage total) {
     this.total = total;
     return this;
   }
 
-   /**
+  /**
    * Get total
    * @return total
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_TOTAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public TotalUsage getTotal() {
     return total;
   }
@@ -108,12 +110,12 @@ public class UsageResponse {
 
   @JsonProperty(JSON_PROPERTY_TOTAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTotal(TotalUsage total) {
+  public void setTotal(@javax.annotation.Nullable TotalUsage total) {
     this.total = total;
   }
 
 
-  public UsageResponse billingPeriods(List<BillingPeriod> billingPeriods) {
+  public UsageResponse billingPeriods(@javax.annotation.Nullable List<BillingPeriod> billingPeriods) {
     this.billingPeriods = billingPeriods;
     return this;
   }
@@ -126,14 +128,13 @@ public class UsageResponse {
     return this;
   }
 
-   /**
+  /**
    * All billing periods.
    * @return billingPeriods
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_BILLING_PERIODS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public List<BillingPeriod> getBillingPeriods() {
     return billingPeriods;
   }
@@ -141,7 +142,7 @@ public class UsageResponse {
 
   @JsonProperty(JSON_PROPERTY_BILLING_PERIODS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBillingPeriods(List<BillingPeriod> billingPeriods) {
+  public void setBillingPeriods(@javax.annotation.Nullable List<BillingPeriod> billingPeriods) {
     this.billingPeriods = billingPeriods;
   }
 

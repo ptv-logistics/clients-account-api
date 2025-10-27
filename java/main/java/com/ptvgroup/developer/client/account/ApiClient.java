@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -51,7 +51,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  * <p>The setter methods of this class return the current object to facilitate
  * a fluent style of configuration.</p>
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-06T11:23:34.887389Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T08:42:36.875563401Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class ApiClient {
 
   private HttpClient.Builder builder;
@@ -66,7 +66,7 @@ public class ApiClient {
   private Duration readTimeout;
   private Duration connectTimeout;
 
-  private static String valueToString(Object value) {
+  public static String valueToString(Object value) {
     if (value == null) {
       return "";
     }

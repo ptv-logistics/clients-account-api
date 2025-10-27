@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -31,6 +31,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.account.ApiClient;
 /**
  * ApiKeyUsage
  */
@@ -42,42 +43,47 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ApiKeyUsage.JSON_PROPERTY_TRANSACTIONS,
   ApiKeyUsage.JSON_PROPERTY_REQUESTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-06T11:23:34.887389Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T08:42:36.875563401Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class ApiKeyUsage {
   public static final String JSON_PROPERTY_API_KEY = "apiKey";
+  @javax.annotation.Nullable
   private String apiKey;
 
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
+  @javax.annotation.Nullable
   private String description;
 
   public static final String JSON_PROPERTY_DELETED = "deleted";
+  @javax.annotation.Nullable
   private Boolean deleted;
 
   public static final String JSON_PROPERTY_SERVICES = "services";
+  @javax.annotation.Nullable
   private List<ServiceUsage> services;
 
   public static final String JSON_PROPERTY_TRANSACTIONS = "transactions";
+  @javax.annotation.Nullable
   private Double transactions;
 
   public static final String JSON_PROPERTY_REQUESTS = "requests";
+  @javax.annotation.Nullable
   private Integer requests;
 
   public ApiKeyUsage() { 
   }
 
-  public ApiKeyUsage apiKey(String apiKey) {
+  public ApiKeyUsage apiKey(@javax.annotation.Nullable String apiKey) {
     this.apiKey = apiKey;
     return this;
   }
 
-   /**
+  /**
    * The first letters of the API key.
    * @return apiKey
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_API_KEY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getApiKey() {
     return apiKey;
   }
@@ -85,24 +91,23 @@ public class ApiKeyUsage {
 
   @JsonProperty(JSON_PROPERTY_API_KEY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setApiKey(String apiKey) {
+  public void setApiKey(@javax.annotation.Nullable String apiKey) {
     this.apiKey = apiKey;
   }
 
 
-  public ApiKeyUsage description(String description) {
+  public ApiKeyUsage description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
   }
 
-   /**
+  /**
    * The description of the API key.
    * @return description
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getDescription() {
     return description;
   }
@@ -110,24 +115,23 @@ public class ApiKeyUsage {
 
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(String description) {
+  public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
   }
 
 
-  public ApiKeyUsage deleted(Boolean deleted) {
+  public ApiKeyUsage deleted(@javax.annotation.Nullable Boolean deleted) {
     this.deleted = deleted;
     return this;
   }
 
-   /**
+  /**
    * True, if the API key has been deleted, false otherwise. Deleted API keys will still be included in usage calculations but cannot be used anymore.
    * @return deleted
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_DELETED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Boolean getDeleted() {
     return deleted;
   }
@@ -135,12 +139,12 @@ public class ApiKeyUsage {
 
   @JsonProperty(JSON_PROPERTY_DELETED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeleted(Boolean deleted) {
+  public void setDeleted(@javax.annotation.Nullable Boolean deleted) {
     this.deleted = deleted;
   }
 
 
-  public ApiKeyUsage services(List<ServiceUsage> services) {
+  public ApiKeyUsage services(@javax.annotation.Nullable List<ServiceUsage> services) {
     this.services = services;
     return this;
   }
@@ -153,14 +157,13 @@ public class ApiKeyUsage {
     return this;
   }
 
-   /**
+  /**
    * This list contains the usage by service. Only services which have been used in the requested period will be returned.
    * @return services
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_SERVICES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public List<ServiceUsage> getServices() {
     return services;
   }
@@ -168,24 +171,23 @@ public class ApiKeyUsage {
 
   @JsonProperty(JSON_PROPERTY_SERVICES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setServices(List<ServiceUsage> services) {
+  public void setServices(@javax.annotation.Nullable List<ServiceUsage> services) {
     this.services = services;
   }
 
 
-  public ApiKeyUsage transactions(Double transactions) {
+  public ApiKeyUsage transactions(@javax.annotation.Nullable Double transactions) {
     this.transactions = transactions;
     return this;
   }
 
-   /**
+  /**
    * Transactions charged by this API key.
    * @return transactions
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_TRANSACTIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Double getTransactions() {
     return transactions;
   }
@@ -193,24 +195,23 @@ public class ApiKeyUsage {
 
   @JsonProperty(JSON_PROPERTY_TRANSACTIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTransactions(Double transactions) {
+  public void setTransactions(@javax.annotation.Nullable Double transactions) {
     this.transactions = transactions;
   }
 
 
-  public ApiKeyUsage requests(Integer requests) {
+  public ApiKeyUsage requests(@javax.annotation.Nullable Integer requests) {
     this.requests = requests;
     return this;
   }
 
-   /**
+  /**
    * Requests sent using this API key.
    * @return requests
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_REQUESTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getRequests() {
     return requests;
   }
@@ -218,7 +219,7 @@ public class ApiKeyUsage {
 
   @JsonProperty(JSON_PROPERTY_REQUESTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequests(Integer requests) {
+  public void setRequests(@javax.annotation.Nullable Integer requests) {
     this.requests = requests;
   }
 
@@ -307,17 +308,17 @@ public class ApiKeyUsage {
 
     // add `apiKey` to the URL query string
     if (getApiKey() != null) {
-      joiner.add(String.format("%sapiKey%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getApiKey()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sapiKey%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getApiKey()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `description` to the URL query string
     if (getDescription() != null) {
-      joiner.add(String.format("%sdescription%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDescription()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sdescription%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDescription()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `deleted` to the URL query string
     if (getDeleted() != null) {
-      joiner.add(String.format("%sdeleted%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDeleted()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sdeleted%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDeleted()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `services` to the URL query string
@@ -332,12 +333,12 @@ public class ApiKeyUsage {
 
     // add `transactions` to the URL query string
     if (getTransactions() != null) {
-      joiner.add(String.format("%stransactions%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTransactions()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%stransactions%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTransactions()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `requests` to the URL query string
     if (getRequests() != null) {
-      joiner.add(String.format("%srequests%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getRequests()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%srequests%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRequests()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     return joiner.toString();

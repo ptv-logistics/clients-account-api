@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -31,21 +31,23 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.account.ApiClient;
 /**
  * ApiKeysResponse
  */
 @JsonPropertyOrder({
   ApiKeysResponse.JSON_PROPERTY_API_KEYS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-06T11:23:34.887389Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T08:42:36.875563401Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class ApiKeysResponse {
   public static final String JSON_PROPERTY_API_KEYS = "apiKeys";
-  private List<ApiKeyResponse> apiKeys = new ArrayList<>();
+  @javax.annotation.Nonnull
+  private List<ApiKeyResponse> apiKeys;
 
   public ApiKeysResponse() { 
   }
 
-  public ApiKeysResponse apiKeys(List<ApiKeyResponse> apiKeys) {
+  public ApiKeysResponse apiKeys(@javax.annotation.Nonnull List<ApiKeyResponse> apiKeys) {
     this.apiKeys = apiKeys;
     return this;
   }
@@ -58,14 +60,13 @@ public class ApiKeysResponse {
     return this;
   }
 
-   /**
+  /**
    * The list of API keys of the current subscription sorted by the date they were created in descending order so that the newest API key comes first.
    * @return apiKeys
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_API_KEYS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public List<ApiKeyResponse> getApiKeys() {
     return apiKeys;
   }
@@ -73,7 +74,7 @@ public class ApiKeysResponse {
 
   @JsonProperty(JSON_PROPERTY_API_KEYS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setApiKeys(List<ApiKeyResponse> apiKeys) {
+  public void setApiKeys(@javax.annotation.Nonnull List<ApiKeyResponse> apiKeys) {
     this.apiKeys = apiKeys;
   }
 

@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -28,6 +28,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.account.ApiClient;
 /**
  * TotalServiceUsage
  */
@@ -36,33 +37,35 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   TotalServiceUsage.JSON_PROPERTY_TRANSACTIONS,
   TotalServiceUsage.JSON_PROPERTY_REQUESTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-06T11:23:34.887389Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T08:42:36.875563401Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class TotalServiceUsage {
   public static final String JSON_PROPERTY_NAME = "name";
+  @javax.annotation.Nullable
   private String name;
 
   public static final String JSON_PROPERTY_TRANSACTIONS = "transactions";
+  @javax.annotation.Nullable
   private Double transactions;
 
   public static final String JSON_PROPERTY_REQUESTS = "requests";
+  @javax.annotation.Nullable
   private Integer requests;
 
   public TotalServiceUsage() { 
   }
 
-  public TotalServiceUsage name(String name) {
+  public TotalServiceUsage name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * The name of the service.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getName() {
     return name;
   }
@@ -70,24 +73,23 @@ public class TotalServiceUsage {
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public TotalServiceUsage transactions(Double transactions) {
+  public TotalServiceUsage transactions(@javax.annotation.Nullable Double transactions) {
     this.transactions = transactions;
     return this;
   }
 
-   /**
+  /**
    * Transactions charged by this service.
    * @return transactions
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_TRANSACTIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Double getTransactions() {
     return transactions;
   }
@@ -95,24 +97,23 @@ public class TotalServiceUsage {
 
   @JsonProperty(JSON_PROPERTY_TRANSACTIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTransactions(Double transactions) {
+  public void setTransactions(@javax.annotation.Nullable Double transactions) {
     this.transactions = transactions;
   }
 
 
-  public TotalServiceUsage requests(Integer requests) {
+  public TotalServiceUsage requests(@javax.annotation.Nullable Integer requests) {
     this.requests = requests;
     return this;
   }
 
-   /**
+  /**
    * Requests sent to this service.
    * @return requests
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_REQUESTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public Integer getRequests() {
     return requests;
   }
@@ -120,7 +121,7 @@ public class TotalServiceUsage {
 
   @JsonProperty(JSON_PROPERTY_REQUESTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequests(Integer requests) {
+  public void setRequests(@javax.annotation.Nullable Integer requests) {
     this.requests = requests;
   }
 
@@ -203,17 +204,17 @@ public class TotalServiceUsage {
 
     // add `name` to the URL query string
     if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `transactions` to the URL query string
     if (getTransactions() != null) {
-      joiner.add(String.format("%stransactions%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getTransactions()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%stransactions%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTransactions()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `requests` to the URL query string
     if (getRequests() != null) {
-      joiner.add(String.format("%srequests%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getRequests()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%srequests%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRequests()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     return joiner.toString();

@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -31,6 +31,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.account.ApiClient;
 /**
  * ServiceUsage
  */
@@ -38,30 +39,31 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ServiceUsage.JSON_PROPERTY_NAME,
   ServiceUsage.JSON_PROPERTY_DAYS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-06T11:23:34.887389Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T08:42:36.875563401Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class ServiceUsage {
   public static final String JSON_PROPERTY_NAME = "name";
+  @javax.annotation.Nullable
   private String name;
 
   public static final String JSON_PROPERTY_DAYS = "days";
+  @javax.annotation.Nullable
   private List<UsageByDay> days;
 
   public ServiceUsage() { 
   }
 
-  public ServiceUsage name(String name) {
+  public ServiceUsage name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * The name of the service.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public String getName() {
     return name;
   }
@@ -69,12 +71,12 @@ public class ServiceUsage {
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public ServiceUsage days(List<UsageByDay> days) {
+  public ServiceUsage days(@javax.annotation.Nullable List<UsageByDay> days) {
     this.days = days;
     return this;
   }
@@ -87,14 +89,13 @@ public class ServiceUsage {
     return this;
   }
 
-   /**
+  /**
    * This list contains the usage by day. Only days on which the usage is non-zero will be returned.
    * @return days
-  **/
+   */
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_DAYS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
   public List<UsageByDay> getDays() {
     return days;
   }
@@ -102,7 +103,7 @@ public class ServiceUsage {
 
   @JsonProperty(JSON_PROPERTY_DAYS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDays(List<UsageByDay> days) {
+  public void setDays(@javax.annotation.Nullable List<UsageByDay> days) {
     this.days = days;
   }
 
@@ -183,7 +184,7 @@ public class ServiceUsage {
 
     // add `name` to the URL query string
     if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `days` to the URL query string

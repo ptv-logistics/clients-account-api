@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -29,6 +29,7 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import com.ptvgroup.developer.client.account.ApiClient;
 /**
  * ApiKeyResponse
  */
@@ -37,33 +38,35 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ApiKeyResponse.JSON_PROPERTY_DESCRIPTION,
   ApiKeyResponse.JSON_PROPERTY_CREATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-05-06T11:23:34.887389Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-27T08:42:36.875563401Z[Etc/UTC]", comments = "Generator version: 7.10.0")
 public class ApiKeyResponse {
   public static final String JSON_PROPERTY_API_KEY = "apiKey";
+  @javax.annotation.Nonnull
   private String apiKey;
 
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
+  @javax.annotation.Nonnull
   private String description;
 
   public static final String JSON_PROPERTY_CREATED = "created";
+  @javax.annotation.Nonnull
   private LocalDate created;
 
   public ApiKeyResponse() { 
   }
 
-  public ApiKeyResponse apiKey(String apiKey) {
+  public ApiKeyResponse apiKey(@javax.annotation.Nonnull String apiKey) {
     this.apiKey = apiKey;
     return this;
   }
 
-   /**
+  /**
    * The API key.
    * @return apiKey
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_API_KEY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public String getApiKey() {
     return apiKey;
   }
@@ -71,24 +74,23 @@ public class ApiKeyResponse {
 
   @JsonProperty(JSON_PROPERTY_API_KEY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setApiKey(String apiKey) {
+  public void setApiKey(@javax.annotation.Nonnull String apiKey) {
     this.apiKey = apiKey;
   }
 
 
-  public ApiKeyResponse description(String description) {
+  public ApiKeyResponse description(@javax.annotation.Nonnull String description) {
     this.description = description;
     return this;
   }
 
-   /**
+  /**
    * The description of the API key.
    * @return description
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public String getDescription() {
     return description;
   }
@@ -96,24 +98,23 @@ public class ApiKeyResponse {
 
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDescription(String description) {
+  public void setDescription(@javax.annotation.Nonnull String description) {
     this.description = description;
   }
 
 
-  public ApiKeyResponse created(LocalDate created) {
+  public ApiKeyResponse created(@javax.annotation.Nonnull LocalDate created) {
     this.created = created;
     return this;
   }
 
-   /**
+  /**
    * The date when the API key was created formatted according to [RFC 3339](https://tools.ietf.org/html/rfc3339). The date denotes the day from 00:00:00+00:00 until 23:59:59+00:00 based on Coordinated Universal Time (UTC).
    * @return created
-  **/
+   */
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_CREATED)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public LocalDate getCreated() {
     return created;
   }
@@ -121,7 +122,7 @@ public class ApiKeyResponse {
 
   @JsonProperty(JSON_PROPERTY_CREATED)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCreated(LocalDate created) {
+  public void setCreated(@javax.annotation.Nonnull LocalDate created) {
     this.created = created;
   }
 
@@ -204,17 +205,17 @@ public class ApiKeyResponse {
 
     // add `apiKey` to the URL query string
     if (getApiKey() != null) {
-      joiner.add(String.format("%sapiKey%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getApiKey()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sapiKey%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getApiKey()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `description` to the URL query string
     if (getDescription() != null) {
-      joiner.add(String.format("%sdescription%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getDescription()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%sdescription%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDescription()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     // add `created` to the URL query string
     if (getCreated() != null) {
-      joiner.add(String.format("%screated%s=%s", prefix, suffix, URLEncoder.encode(String.valueOf(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      joiner.add(String.format("%screated%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
     }
 
     return joiner.toString();
