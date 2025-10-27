@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  *
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
@@ -138,7 +138,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiKeyResponse</returns>
-        System.Threading.Tasks.Task<ApiKeyResponse> CreateApiKeyAsync(string description, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiKeyResponse> CreateApiKeyAsync(string description, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -151,7 +151,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ApiKeyResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiKeyResponse>> CreateApiKeyWithHttpInfoAsync(string description, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiKeyResponse>> CreateApiKeyWithHttpInfoAsync(string description, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -163,7 +163,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteApiKeyAsync(string apiKey, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task DeleteApiKeyAsync(string apiKey, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -176,7 +176,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteApiKeyWithHttpInfoAsync(string apiKey, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteApiKeyWithHttpInfoAsync(string apiKey, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -187,7 +187,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiKeysResponse</returns>
-        System.Threading.Tasks.Task<ApiKeysResponse> GetApiKeysAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiKeysResponse> GetApiKeysAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -199,7 +199,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ApiKeysResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiKeysResponse>> GetApiKeysWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiKeysResponse>> GetApiKeysWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -212,7 +212,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiKeyResponse</returns>
-        System.Threading.Tasks.Task<ApiKeyResponse> UpdateApiKeyAsync(string apiKey, string description, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiKeyResponse> UpdateApiKeyAsync(string apiKey, string description, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -226,7 +226,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ApiKeyResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiKeyResponse>> UpdateApiKeyWithHttpInfoAsync(string apiKey, string description, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiKeyResponse>> UpdateApiKeyWithHttpInfoAsync(string apiKey, string description, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -430,7 +430,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiKeyResponse</returns>
-        public async System.Threading.Tasks.Task<ApiKeyResponse> CreateApiKeyAsync(string description, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiKeyResponse> CreateApiKeyAsync(string description, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             PTV.Developer.Clients.account.Client.ApiResponse<ApiKeyResponse> localVarResponse = await CreateApiKeyWithHttpInfoAsync(description, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -444,7 +444,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ApiKeyResponse)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.account.Client.ApiResponse<ApiKeyResponse>> CreateApiKeyWithHttpInfoAsync(string description, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.account.Client.ApiResponse<ApiKeyResponse>> CreateApiKeyWithHttpInfoAsync(string description, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'description' is set
             if (description == null)
@@ -583,7 +583,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteApiKeyAsync(string apiKey, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task DeleteApiKeyAsync(string apiKey, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             await DeleteApiKeyWithHttpInfoAsync(apiKey, operationIndex, cancellationToken).ConfigureAwait(false);
         }
@@ -596,7 +596,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.account.Client.ApiResponse<Object>> DeleteApiKeyWithHttpInfoAsync(string apiKey, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.account.Client.ApiResponse<Object>> DeleteApiKeyWithHttpInfoAsync(string apiKey, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'apiKey' is set
             if (apiKey == null)
@@ -726,7 +726,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiKeysResponse</returns>
-        public async System.Threading.Tasks.Task<ApiKeysResponse> GetApiKeysAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiKeysResponse> GetApiKeysAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             PTV.Developer.Clients.account.Client.ApiResponse<ApiKeysResponse> localVarResponse = await GetApiKeysWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -739,7 +739,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ApiKeysResponse)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.account.Client.ApiResponse<ApiKeysResponse>> GetApiKeysWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.account.Client.ApiResponse<ApiKeysResponse>> GetApiKeysWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             PTV.Developer.Clients.account.Client.RequestOptions localVarRequestOptions = new PTV.Developer.Clients.account.Client.RequestOptions();
@@ -882,7 +882,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiKeyResponse</returns>
-        public async System.Threading.Tasks.Task<ApiKeyResponse> UpdateApiKeyAsync(string apiKey, string description, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiKeyResponse> UpdateApiKeyAsync(string apiKey, string description, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             PTV.Developer.Clients.account.Client.ApiResponse<ApiKeyResponse> localVarResponse = await UpdateApiKeyWithHttpInfoAsync(apiKey, description, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -897,7 +897,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ApiKeyResponse)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.account.Client.ApiResponse<ApiKeyResponse>> UpdateApiKeyWithHttpInfoAsync(string apiKey, string description, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.account.Client.ApiResponse<ApiKeyResponse>> UpdateApiKeyWithHttpInfoAsync(string apiKey, string description, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'apiKey' is set
             if (apiKey == null)

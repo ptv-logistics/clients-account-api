@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  *
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
@@ -29,7 +29,7 @@ namespace PTV.Developer.Clients.account.Model
     /// UsageResponse
     /// </summary>
     [DataContract(Name = "UsageResponse")]
-    public partial class UsageResponse : IEquatable<UsageResponse>, IValidatableObject
+    public partial class UsageResponse : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UsageResponse" /> class.
@@ -89,77 +89,11 @@ namespace PTV.Developer.Clients.account.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as UsageResponse);
-        }
-
-        /// <summary>
-        /// Returns true if UsageResponse instances are equal
-        /// </summary>
-        /// <param name="input">Instance of UsageResponse to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(UsageResponse input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.ApiKeys == input.ApiKeys ||
-                    this.ApiKeys != null &&
-                    input.ApiKeys != null &&
-                    this.ApiKeys.SequenceEqual(input.ApiKeys)
-                ) && 
-                (
-                    this.Total == input.Total ||
-                    (this.Total != null &&
-                    this.Total.Equals(input.Total))
-                ) && 
-                (
-                    this.BillingPeriods == input.BillingPeriods ||
-                    this.BillingPeriods != null &&
-                    input.BillingPeriods != null &&
-                    this.BillingPeriods.SequenceEqual(input.BillingPeriods)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ApiKeys != null)
-                {
-                    hashCode = (hashCode * 59) + this.ApiKeys.GetHashCode();
-                }
-                if (this.Total != null)
-                {
-                    hashCode = (hashCode * 59) + this.Total.GetHashCode();
-                }
-                if (this.BillingPeriods != null)
-                {
-                    hashCode = (hashCode * 59) + this.BillingPeriods.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

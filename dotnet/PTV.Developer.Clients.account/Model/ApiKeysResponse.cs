@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  *
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
@@ -29,7 +29,7 @@ namespace PTV.Developer.Clients.account.Model
     /// ApiKeysResponse
     /// </summary>
     [DataContract(Name = "ApiKeysResponse")]
-    public partial class ApiKeysResponse : IEquatable<ApiKeysResponse>, IValidatableObject
+    public partial class ApiKeysResponse : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiKeysResponse" /> class.
@@ -80,58 +80,11 @@ namespace PTV.Developer.Clients.account.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as ApiKeysResponse);
-        }
-
-        /// <summary>
-        /// Returns true if ApiKeysResponse instances are equal
-        /// </summary>
-        /// <param name="input">Instance of ApiKeysResponse to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ApiKeysResponse input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.ApiKeys == input.ApiKeys ||
-                    this.ApiKeys != null &&
-                    input.ApiKeys != null &&
-                    this.ApiKeys.SequenceEqual(input.ApiKeys)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ApiKeys != null)
-                {
-                    hashCode = (hashCode * 59) + this.ApiKeys.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

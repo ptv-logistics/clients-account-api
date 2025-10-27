@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  *
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
@@ -71,10 +71,10 @@ namespace PTV.Developer.Clients.account.Client
         string TempFolderPath { get; }
 
         /// <summary>
-        /// Gets the HTTP connection timeout (in milliseconds)
+        /// Gets the HTTP connection timeout.
         /// </summary>
         /// <value>HTTP connection timeout.</value>
-        int Timeout { get; }
+        TimeSpan Timeout { get; }
 
         /// <summary>
         /// Gets the proxy.

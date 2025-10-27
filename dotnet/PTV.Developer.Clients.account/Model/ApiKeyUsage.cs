@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  *
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
@@ -29,7 +29,7 @@ namespace PTV.Developer.Clients.account.Model
     /// ApiKeyUsage
     /// </summary>
     [DataContract(Name = "ApiKeyUsage")]
-    public partial class ApiKeyUsage : IEquatable<ApiKeyUsage>, IValidatableObject
+    public partial class ApiKeyUsage : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiKeyUsage" /> class.
@@ -40,7 +40,7 @@ namespace PTV.Developer.Clients.account.Model
         /// <param name="services">This list contains the usage by service. Only services which have been used in the requested period will be returned..</param>
         /// <param name="transactions">Transactions charged by this API key..</param>
         /// <param name="requests">Requests sent using this API key..</param>
-        public ApiKeyUsage(string apiKey = default(string), string description = default(string), bool deleted = default(bool), List<ServiceUsage> services = default(List<ServiceUsage>), double transactions = default(double), int requests = default(int))
+        public ApiKeyUsage(string apiKey = default(string), string description = default(string), bool? deleted = default(bool?), List<ServiceUsage> services = default(List<ServiceUsage>), double? transactions = default(double?), int? requests = default(int?))
         {
             this.ApiKey = apiKey;
             this.Description = description;
@@ -54,14 +54,14 @@ namespace PTV.Developer.Clients.account.Model
         /// The first letters of the API key.
         /// </summary>
         /// <value>The first letters of the API key.</value>
-        [DataMember(Name = "apiKey", EmitDefaultValue = false)]
+        [DataMember(Name = "apiKey", EmitDefaultValue = true)]
         public string ApiKey { get; set; }
 
         /// <summary>
         /// The description of the API key.
         /// </summary>
         /// <value>The description of the API key.</value>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        [DataMember(Name = "description", EmitDefaultValue = true)]
         public string Description { get; set; }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace PTV.Developer.Clients.account.Model
         /// </summary>
         /// <value>True, if the API key has been deleted, false otherwise. Deleted API keys will still be included in usage calculations but cannot be used anymore.</value>
         [DataMember(Name = "deleted", EmitDefaultValue = true)]
-        public bool Deleted { get; set; }
+        public bool? Deleted { get; set; }
 
         /// <summary>
         /// This list contains the usage by service. Only services which have been used in the requested period will be returned.
@@ -82,15 +82,15 @@ namespace PTV.Developer.Clients.account.Model
         /// Transactions charged by this API key.
         /// </summary>
         /// <value>Transactions charged by this API key.</value>
-        [DataMember(Name = "transactions", EmitDefaultValue = false)]
-        public double Transactions { get; set; }
+        [DataMember(Name = "transactions", EmitDefaultValue = true)]
+        public double? Transactions { get; set; }
 
         /// <summary>
         /// Requests sent using this API key.
         /// </summary>
         /// <value>Requests sent using this API key.</value>
-        [DataMember(Name = "requests", EmitDefaultValue = false)]
-        public int Requests { get; set; }
+        [DataMember(Name = "requests", EmitDefaultValue = true)]
+        public int? Requests { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -120,91 +120,11 @@ namespace PTV.Developer.Clients.account.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as ApiKeyUsage);
-        }
-
-        /// <summary>
-        /// Returns true if ApiKeyUsage instances are equal
-        /// </summary>
-        /// <param name="input">Instance of ApiKeyUsage to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ApiKeyUsage input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.ApiKey == input.ApiKey ||
-                    (this.ApiKey != null &&
-                    this.ApiKey.Equals(input.ApiKey))
-                ) && 
-                (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
-                ) && 
-                (
-                    this.Deleted == input.Deleted ||
-                    this.Deleted.Equals(input.Deleted)
-                ) && 
-                (
-                    this.Services == input.Services ||
-                    this.Services != null &&
-                    input.Services != null &&
-                    this.Services.SequenceEqual(input.Services)
-                ) && 
-                (
-                    this.Transactions == input.Transactions ||
-                    this.Transactions.Equals(input.Transactions)
-                ) && 
-                (
-                    this.Requests == input.Requests ||
-                    this.Requests.Equals(input.Requests)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ApiKey != null)
-                {
-                    hashCode = (hashCode * 59) + this.ApiKey.GetHashCode();
-                }
-                if (this.Description != null)
-                {
-                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Deleted.GetHashCode();
-                if (this.Services != null)
-                {
-                    hashCode = (hashCode * 59) + this.Services.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Transactions.GetHashCode();
-                hashCode = (hashCode * 59) + this.Requests.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

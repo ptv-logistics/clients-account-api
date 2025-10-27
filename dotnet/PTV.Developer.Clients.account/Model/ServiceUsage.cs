@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  *
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
@@ -29,7 +29,7 @@ namespace PTV.Developer.Clients.account.Model
     /// ServiceUsage
     /// </summary>
     [DataContract(Name = "ServiceUsage")]
-    public partial class ServiceUsage : IEquatable<ServiceUsage>, IValidatableObject
+    public partial class ServiceUsage : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceUsage" /> class.
@@ -46,7 +46,7 @@ namespace PTV.Developer.Clients.account.Model
         /// The name of the service.
         /// </summary>
         /// <value>The name of the service.</value>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name = "name", EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
@@ -80,67 +80,11 @@ namespace PTV.Developer.Clients.account.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as ServiceUsage);
-        }
-
-        /// <summary>
-        /// Returns true if ServiceUsage instances are equal
-        /// </summary>
-        /// <param name="input">Instance of ServiceUsage to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ServiceUsage input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
-                (
-                    this.Days == input.Days ||
-                    this.Days != null &&
-                    input.Days != null &&
-                    this.Days.SequenceEqual(input.Days)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Name != null)
-                {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
-                }
-                if (this.Days != null)
-                {
-                    hashCode = (hashCode * 59) + this.Days.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

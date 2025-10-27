@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  *
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
@@ -29,7 +29,7 @@ namespace PTV.Developer.Clients.account.Model
     /// ApiKeyResponse
     /// </summary>
     [DataContract(Name = "ApiKeyResponse")]
-    public partial class ApiKeyResponse : IEquatable<ApiKeyResponse>, IValidatableObject
+    public partial class ApiKeyResponse : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiKeyResponse" /> class.
@@ -42,7 +42,7 @@ namespace PTV.Developer.Clients.account.Model
         /// <param name="apiKey">The API key. (required).</param>
         /// <param name="description">The description of the API key. (required).</param>
         /// <param name="created">The date when the API key was created formatted according to [RFC 3339](https://tools.ietf.org/html/rfc3339). The date denotes the day from 00:00:00+00:00 until 23:59:59+00:00 based on Coordinated Universal Time (UTC). (required).</param>
-        public ApiKeyResponse(string apiKey = default(string), string description = default(string), DateTimeOffset created = default(DateTimeOffset))
+        public ApiKeyResponse(string apiKey = default(string), string description = default(string), DateOnly? created = default(DateOnly?))
         {
             // to ensure "apiKey" is required (not null)
             if (apiKey == null)
@@ -56,6 +56,11 @@ namespace PTV.Developer.Clients.account.Model
                 throw new ArgumentNullException("description is a required property for ApiKeyResponse and cannot be null");
             }
             this.Description = description;
+            // to ensure "created" is required (not null)
+            if (created == null)
+            {
+                throw new ArgumentNullException("created is a required property for ApiKeyResponse and cannot be null");
+            }
             this.Created = created;
         }
 
@@ -78,8 +83,7 @@ namespace PTV.Developer.Clients.account.Model
         /// </summary>
         /// <value>The date when the API key was created formatted according to [RFC 3339](https://tools.ietf.org/html/rfc3339). The date denotes the day from 00:00:00+00:00 until 23:59:59+00:00 based on Coordinated Universal Time (UTC).</value>
         [DataMember(Name = "created", IsRequired = true, EmitDefaultValue = true)]
-        [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTimeOffset Created { get; set; }
+        public DateOnly? Created { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -106,86 +110,22 @@ namespace PTV.Developer.Clients.account.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as ApiKeyResponse);
-        }
-
-        /// <summary>
-        /// Returns true if ApiKeyResponse instances are equal
-        /// </summary>
-        /// <param name="input">Instance of ApiKeyResponse to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ApiKeyResponse input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.ApiKey == input.ApiKey ||
-                    (this.ApiKey != null &&
-                    this.ApiKey.Equals(input.ApiKey))
-                ) && 
-                (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
-                ) && 
-                (
-                    this.Created == input.Created ||
-                    (this.Created != null &&
-                    this.Created.Equals(input.Created))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ApiKey != null)
-                {
-                    hashCode = (hashCode * 59) + this.ApiKey.GetHashCode();
-                }
-                if (this.Description != null)
-                {
-                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
-                }
-                if (this.Created != null)
-                {
-                    hashCode = (hashCode * 59) + this.Created.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Description (string) maxLength
             if (this.Description != null && this.Description.Length > 100)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 100.", new [] { "Description" });
+                yield return new ValidationResult("Invalid value for Description, length must be less than 100.", new [] { "Description" });
             }
 
             // Description (string) minLength
             if (this.Description != null && this.Description.Length < 1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be greater than 1.", new [] { "Description" });
+                yield return new ValidationResult("Invalid value for Description, length must be greater than 1.", new [] { "Description" });
             }
 
             yield break;

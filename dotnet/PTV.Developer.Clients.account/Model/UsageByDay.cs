@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  *
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
@@ -29,7 +29,7 @@ namespace PTV.Developer.Clients.account.Model
     /// UsageByDay
     /// </summary>
     [DataContract(Name = "UsageByDay")]
-    public partial class UsageByDay : IEquatable<UsageByDay>, IValidatableObject
+    public partial class UsageByDay : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UsageByDay" /> class.
@@ -37,7 +37,7 @@ namespace PTV.Developer.Clients.account.Model
         /// <param name="date">The date formatted according to [RFC 3339](https://tools.ietf.org/html/rfc3339)..</param>
         /// <param name="transactions">Transactions charged on this day..</param>
         /// <param name="requests">Requests sent on this day..</param>
-        public UsageByDay(DateTimeOffset date = default(DateTimeOffset), double transactions = default(double), int requests = default(int))
+        public UsageByDay(DateOnly? date = default(DateOnly?), double? transactions = default(double?), int? requests = default(int?))
         {
             this.Date = date;
             this.Transactions = transactions;
@@ -48,23 +48,22 @@ namespace PTV.Developer.Clients.account.Model
         /// The date formatted according to [RFC 3339](https://tools.ietf.org/html/rfc3339).
         /// </summary>
         /// <value>The date formatted according to [RFC 3339](https://tools.ietf.org/html/rfc3339).</value>
-        [DataMember(Name = "date", EmitDefaultValue = false)]
-        [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTimeOffset Date { get; set; }
+        [DataMember(Name = "date", EmitDefaultValue = true)]
+        public DateOnly? Date { get; set; }
 
         /// <summary>
         /// Transactions charged on this day.
         /// </summary>
         /// <value>Transactions charged on this day.</value>
-        [DataMember(Name = "transactions", EmitDefaultValue = false)]
-        public double Transactions { get; set; }
+        [DataMember(Name = "transactions", EmitDefaultValue = true)]
+        public double? Transactions { get; set; }
 
         /// <summary>
         /// Requests sent on this day.
         /// </summary>
         /// <value>Requests sent on this day.</value>
-        [DataMember(Name = "requests", EmitDefaultValue = false)]
-        public int Requests { get; set; }
+        [DataMember(Name = "requests", EmitDefaultValue = true)]
+        public int? Requests { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -91,67 +90,11 @@ namespace PTV.Developer.Clients.account.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as UsageByDay);
-        }
-
-        /// <summary>
-        /// Returns true if UsageByDay instances are equal
-        /// </summary>
-        /// <param name="input">Instance of UsageByDay to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(UsageByDay input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.Date == input.Date ||
-                    (this.Date != null &&
-                    this.Date.Equals(input.Date))
-                ) && 
-                (
-                    this.Transactions == input.Transactions ||
-                    this.Transactions.Equals(input.Transactions)
-                ) && 
-                (
-                    this.Requests == input.Requests ||
-                    this.Requests.Equals(input.Requests)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Date != null)
-                {
-                    hashCode = (hashCode * 59) + this.Date.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Transactions.GetHashCode();
-                hashCode = (hashCode * 59) + this.Requests.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

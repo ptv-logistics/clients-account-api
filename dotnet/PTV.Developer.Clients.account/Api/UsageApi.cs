@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  *
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
@@ -37,7 +37,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="endDate">The date until when the usage is requested formatted according to [RFC 3339](https://tools.ietf.org/html/rfc3339). If only the **endDate** is given, the response contains the usage only for this date. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>UsageResponse</returns>
-        UsageResponse GetUsage(DateTimeOffset? startDate = default(DateTimeOffset?), DateTimeOffset? endDate = default(DateTimeOffset?), int operationIndex = 0);
+        UsageResponse GetUsage(DateOnly? startDate = default(DateOnly?), DateOnly? endDate = default(DateOnly?), int operationIndex = 0);
 
         /// <summary>
         /// 
@@ -50,7 +50,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="endDate">The date until when the usage is requested formatted according to [RFC 3339](https://tools.ietf.org/html/rfc3339). If only the **endDate** is given, the response contains the usage only for this date. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of UsageResponse</returns>
-        ApiResponse<UsageResponse> GetUsageWithHttpInfo(DateTimeOffset? startDate = default(DateTimeOffset?), DateTimeOffset? endDate = default(DateTimeOffset?), int operationIndex = 0);
+        ApiResponse<UsageResponse> GetUsageWithHttpInfo(DateOnly? startDate = default(DateOnly?), DateOnly? endDate = default(DateOnly?), int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -72,7 +72,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UsageResponse</returns>
-        System.Threading.Tasks.Task<UsageResponse> GetUsageAsync(DateTimeOffset? startDate = default(DateTimeOffset?), DateTimeOffset? endDate = default(DateTimeOffset?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<UsageResponse> GetUsageAsync(DateOnly? startDate = default(DateOnly?), DateOnly? endDate = default(DateOnly?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -86,7 +86,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UsageResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UsageResponse>> GetUsageWithHttpInfoAsync(DateTimeOffset? startDate = default(DateTimeOffset?), DateTimeOffset? endDate = default(DateTimeOffset?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<UsageResponse>> GetUsageWithHttpInfoAsync(DateOnly? startDate = default(DateOnly?), DateOnly? endDate = default(DateOnly?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -215,7 +215,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="endDate">The date until when the usage is requested formatted according to [RFC 3339](https://tools.ietf.org/html/rfc3339). If only the **endDate** is given, the response contains the usage only for this date. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>UsageResponse</returns>
-        public UsageResponse GetUsage(DateTimeOffset? startDate = default(DateTimeOffset?), DateTimeOffset? endDate = default(DateTimeOffset?), int operationIndex = 0)
+        public UsageResponse GetUsage(DateOnly? startDate = default(DateOnly?), DateOnly? endDate = default(DateOnly?), int operationIndex = 0)
         {
             PTV.Developer.Clients.account.Client.ApiResponse<UsageResponse> localVarResponse = GetUsageWithHttpInfo(startDate, endDate);
             return localVarResponse.Data;
@@ -229,7 +229,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="endDate">The date until when the usage is requested formatted according to [RFC 3339](https://tools.ietf.org/html/rfc3339). If only the **endDate** is given, the response contains the usage only for this date. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of UsageResponse</returns>
-        public PTV.Developer.Clients.account.Client.ApiResponse<UsageResponse> GetUsageWithHttpInfo(DateTimeOffset? startDate = default(DateTimeOffset?), DateTimeOffset? endDate = default(DateTimeOffset?), int operationIndex = 0)
+        public PTV.Developer.Clients.account.Client.ApiResponse<UsageResponse> GetUsageWithHttpInfo(DateOnly? startDate = default(DateOnly?), DateOnly? endDate = default(DateOnly?), int operationIndex = 0)
         {
             PTV.Developer.Clients.account.Client.RequestOptions localVarRequestOptions = new PTV.Developer.Clients.account.Client.RequestOptions();
 
@@ -255,11 +255,11 @@ namespace PTV.Developer.Clients.account.Api
 
             if (startDate != null)
             {
-                localVarRequestOptions.QueryParameters.Add(PTV.Developer.Clients.account.Client.ClientUtils.ParameterToMultiMap("", "startDate", startDate.Value.ToString("yyyy-MM-dd")));
+                localVarRequestOptions.QueryParameters.Add(PTV.Developer.Clients.account.Client.ClientUtils.ParameterToMultiMap("", "startDate", startDate));
             }
             if (endDate != null)
             {
-                localVarRequestOptions.QueryParameters.Add(PTV.Developer.Clients.account.Client.ClientUtils.ParameterToMultiMap("", "endDate", endDate.Value.ToString("yyyy-MM-dd")));
+                localVarRequestOptions.QueryParameters.Add(PTV.Developer.Clients.account.Client.ClientUtils.ParameterToMultiMap("", "endDate", endDate));
             }
 
             localVarRequestOptions.Operation = "UsageApi.GetUsage";
@@ -294,7 +294,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UsageResponse</returns>
-        public async System.Threading.Tasks.Task<UsageResponse> GetUsageAsync(DateTimeOffset? startDate = default(DateTimeOffset?), DateTimeOffset? endDate = default(DateTimeOffset?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<UsageResponse> GetUsageAsync(DateOnly? startDate = default(DateOnly?), DateOnly? endDate = default(DateOnly?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             PTV.Developer.Clients.account.Client.ApiResponse<UsageResponse> localVarResponse = await GetUsageWithHttpInfoAsync(startDate, endDate, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -309,7 +309,7 @@ namespace PTV.Developer.Clients.account.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UsageResponse)</returns>
-        public async System.Threading.Tasks.Task<PTV.Developer.Clients.account.Client.ApiResponse<UsageResponse>> GetUsageWithHttpInfoAsync(DateTimeOffset? startDate = default(DateTimeOffset?), DateTimeOffset? endDate = default(DateTimeOffset?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PTV.Developer.Clients.account.Client.ApiResponse<UsageResponse>> GetUsageWithHttpInfoAsync(DateOnly? startDate = default(DateOnly?), DateOnly? endDate = default(DateOnly?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
 
             PTV.Developer.Clients.account.Client.RequestOptions localVarRequestOptions = new PTV.Developer.Clients.account.Client.RequestOptions();
@@ -336,11 +336,11 @@ namespace PTV.Developer.Clients.account.Api
 
             if (startDate != null)
             {
-                localVarRequestOptions.QueryParameters.Add(PTV.Developer.Clients.account.Client.ClientUtils.ParameterToMultiMap("", "startDate", startDate.Value.ToString("yyyy-MM-dd")));
+                localVarRequestOptions.QueryParameters.Add(PTV.Developer.Clients.account.Client.ClientUtils.ParameterToMultiMap("", "startDate", startDate));
             }
             if (endDate != null)
             {
-                localVarRequestOptions.QueryParameters.Add(PTV.Developer.Clients.account.Client.ClientUtils.ParameterToMultiMap("", "endDate", endDate.Value.ToString("yyyy-MM-dd")));
+                localVarRequestOptions.QueryParameters.Add(PTV.Developer.Clients.account.Client.ClientUtils.ParameterToMultiMap("", "endDate", endDate));
             }
 
             localVarRequestOptions.Operation = "UsageApi.GetUsage";

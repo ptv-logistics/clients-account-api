@@ -1,5 +1,5 @@
 /*
- * Account API
+ * Account
  *
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
@@ -29,7 +29,7 @@ namespace PTV.Developer.Clients.account.Model
     /// TotalServiceUsage
     /// </summary>
     [DataContract(Name = "TotalServiceUsage")]
-    public partial class TotalServiceUsage : IEquatable<TotalServiceUsage>, IValidatableObject
+    public partial class TotalServiceUsage : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TotalServiceUsage" /> class.
@@ -37,7 +37,7 @@ namespace PTV.Developer.Clients.account.Model
         /// <param name="name">The name of the service..</param>
         /// <param name="transactions">Transactions charged by this service..</param>
         /// <param name="requests">Requests sent to this service..</param>
-        public TotalServiceUsage(string name = default(string), double transactions = default(double), int requests = default(int))
+        public TotalServiceUsage(string name = default(string), double? transactions = default(double?), int? requests = default(int?))
         {
             this.Name = name;
             this.Transactions = transactions;
@@ -48,22 +48,22 @@ namespace PTV.Developer.Clients.account.Model
         /// The name of the service.
         /// </summary>
         /// <value>The name of the service.</value>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name = "name", EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
         /// Transactions charged by this service.
         /// </summary>
         /// <value>Transactions charged by this service.</value>
-        [DataMember(Name = "transactions", EmitDefaultValue = false)]
-        public double Transactions { get; set; }
+        [DataMember(Name = "transactions", EmitDefaultValue = true)]
+        public double? Transactions { get; set; }
 
         /// <summary>
         /// Requests sent to this service.
         /// </summary>
         /// <value>Requests sent to this service.</value>
-        [DataMember(Name = "requests", EmitDefaultValue = false)]
-        public int Requests { get; set; }
+        [DataMember(Name = "requests", EmitDefaultValue = true)]
+        public int? Requests { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -90,67 +90,11 @@ namespace PTV.Developer.Clients.account.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as TotalServiceUsage);
-        }
-
-        /// <summary>
-        /// Returns true if TotalServiceUsage instances are equal
-        /// </summary>
-        /// <param name="input">Instance of TotalServiceUsage to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TotalServiceUsage input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
-                (
-                    this.Transactions == input.Transactions ||
-                    this.Transactions.Equals(input.Transactions)
-                ) && 
-                (
-                    this.Requests == input.Requests ||
-                    this.Requests.Equals(input.Requests)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Name != null)
-                {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Transactions.GetHashCode();
-                hashCode = (hashCode * 59) + this.Requests.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
