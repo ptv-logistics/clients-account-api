@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -27,23 +27,41 @@ export interface CausingError {
     description: string;
     /**
      * A constant string that can be used to identify this error class programmatically.
-     * An errorCode can have **details** to provide information in additional properties which are described with the code they apply to. They are of type string unless otherwise specified.
+     * 
+     * If additional information is available for an errorCode, it will be provided as key-value pairs with the parameter **details**. The keys available for a specific errorCode are documented directly with the errorCode. Unless stated otherwise, the values are of type string.
+     * 
+     * As an example, the following errorCode provides one key-value pair in the **details**. The key is called **value**.
+     * * `GENERAL_INVALID_VALUE` - A parameter is set to an invalid value.
+     *   * `value` - The invalid value.
+     * 
      * Note that additional errorCodes as well as the **details** of existing errorCodes may be added at any time. Furthermore, the **description** may change at any time.
      * 
      * **Error codes for** `GENERAL_VALIDATION_ERROR`
      * 
-     * * `GENERAL_INVALID_VALUE` - A parameter is set to an invalid value.
-     *   * `value` - The invalid value.
      * * `GENERAL_UNRECOGNIZED_PARAMETER` - A parameter is unknown.
      * * `GENERAL_MISSING_PARAMETER` - A required parameter is missing.
-     * * `GENERAL_MINIMUM_LENGTH_VIOLATED` - The minimum length is violated.
+     * * `GENERAL_TYPE_VIOLATED` - The value of a parameter has an invalid type.
+     *   * `type` - The type.
+     * * `GENERAL_FORMAT_VIOLATED` - The value of a parameter has an invalid format.
+     *   * `format` - The format.
+     * * `GENERAL_PATTERN_VIOLATED` - The value of a string parameter does not satisfy the required pattern.
+     *   * `pattern` - The pattern.
+     * * `GENERAL_MINIMUM_LENGTH_VIOLATED` - The minimum length of a string is violated.
      *   * `minimumLength` - The minimum length (integer).
-     * * `GENERAL_MAXIMUM_LENGTH_VIOLATED` - The maximum length is violated.
+     * * `GENERAL_MAXIMUM_LENGTH_VIOLATED` - The maximum length of a string is violated.
      *   * `maximumLength` - The maximum length (integer).
-     * * `GENERAL_MINIMUM_VALUE_VIOLATED` - The minimum value restriction is violated.
+     * * `GENERAL_MINIMUM_ITEMS_VIOLATED` - The minimum number of items of an array is violated.
+     *   * `minimumItems` - The minimum number of items (integer).
+     * * `GENERAL_MAXIMUM_ITEMS_VIOLATED` - The maximum number of items of an array is violated.
+     *   * `maximumItems` - The maximum number of items (integer).
+     * * `GENERAL_MINIMUM_VALUE_VIOLATED` - The minimum value of a parameter is violated.
      *   * `minimumValue` - The minimum value (integer or double).
-     * * `GENERAL_MAXIMUM_VALUE_VIOLATED` - The maximum value restriction is violated.
+     * * `GENERAL_MAXIMUM_VALUE_VIOLATED` - The maximum value of a parameter is violated.
      *   * `maximumValue` - The maximum value (integer or double).
+     * * `GENERAL_ENUM_VIOLATED` - The value of a parameter is not one of the specified enum values.
+     *   * `enum` - The allowed enum values.
+     * * `GENERAL_INVALID_VALUE` - A parameter is set to an invalid value.
+     *   * `value` - The invalid value.
      * * `GENERAL_DUPLICATE_PARAMETER` - A parameter is duplicated.
      * * `GENERAL_INVALID_LIST` - A list has an invalid format such as duplicate commas.
      *   * `value` - The invalid list.
@@ -52,8 +70,8 @@ export interface CausingError {
      * 
      * **Error codes for** `GENERAL_RESOURCE_NOT_FOUND`
      * 
-     * * `GENERAL_INVALID_ID` - The ID does not exist.
-     *   * `value` - The invalid ID.
+     * * `GENERAL_INVALID_ID` - No resource exists for the provided ID.
+     *   * `value` - The ID for which no resource exists.
      * @type {string}
      * @memberof CausingError
      */
@@ -75,12 +93,10 @@ export interface CausingError {
 /**
  * Check if a given object implements the CausingError interface.
  */
-export function instanceOfCausingError(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "errorCode" in value;
-
-    return isInstance;
+export function instanceOfCausingError(value: object): value is CausingError {
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('errorCode' in value) || value['errorCode'] === undefined) return false;
+    return true;
 }
 
 export function CausingErrorFromJSON(json: any): CausingError {
@@ -88,31 +104,33 @@ export function CausingErrorFromJSON(json: any): CausingError {
 }
 
 export function CausingErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean): CausingError {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'description': json['description'],
         'errorCode': json['errorCode'],
-        'parameter': !exists(json, 'parameter') ? undefined : json['parameter'],
-        'details': !exists(json, 'details') ? undefined : json['details'],
+        'parameter': json['parameter'] == null ? undefined : json['parameter'],
+        'details': json['details'] == null ? undefined : json['details'],
     };
 }
 
-export function CausingErrorToJSON(value?: CausingError | null): any {
-    if (value === undefined) {
-        return undefined;
+export function CausingErrorToJSON(json: any): CausingError {
+    return CausingErrorToJSONTyped(json, false);
+}
+
+export function CausingErrorToJSONTyped(value?: CausingError | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'description': value.description,
-        'errorCode': value.errorCode,
-        'parameter': value.parameter,
-        'details': value.details,
+        'description': value['description'],
+        'errorCode': value['errorCode'],
+        'parameter': value['parameter'],
+        'details': value['details'],
     };
 }
 

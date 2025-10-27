@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ApiKeyResponse } from './ApiKeyResponse';
 import {
     ApiKeyResponseFromJSON,
     ApiKeyResponseFromJSONTyped,
     ApiKeyResponseToJSON,
+    ApiKeyResponseToJSONTyped,
 } from './ApiKeyResponse';
 
 /**
@@ -37,11 +38,9 @@ export interface ApiKeysResponse {
 /**
  * Check if a given object implements the ApiKeysResponse interface.
  */
-export function instanceOfApiKeysResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "apiKeys" in value;
-
-    return isInstance;
+export function instanceOfApiKeysResponse(value: object): value is ApiKeysResponse {
+    if (!('apiKeys' in value) || value['apiKeys'] === undefined) return false;
+    return true;
 }
 
 export function ApiKeysResponseFromJSON(json: any): ApiKeysResponse {
@@ -49,7 +48,7 @@ export function ApiKeysResponseFromJSON(json: any): ApiKeysResponse {
 }
 
 export function ApiKeysResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApiKeysResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -58,16 +57,18 @@ export function ApiKeysResponseFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function ApiKeysResponseToJSON(value?: ApiKeysResponse | null): any {
-    if (value === undefined) {
-        return undefined;
+export function ApiKeysResponseToJSON(json: any): ApiKeysResponse {
+    return ApiKeysResponseToJSONTyped(json, false);
+}
+
+export function ApiKeysResponseToJSONTyped(value?: ApiKeysResponse | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'apiKeys': ((value.apiKeys as Array<any>).map(ApiKeyResponseToJSON)),
+        'apiKeys': ((value['apiKeys'] as Array<any>).map(ApiKeyResponseToJSON)),
     };
 }
 

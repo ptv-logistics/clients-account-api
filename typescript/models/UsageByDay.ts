@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -42,10 +42,8 @@ export interface UsageByDay {
 /**
  * Check if a given object implements the UsageByDay interface.
  */
-export function instanceOfUsageByDay(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfUsageByDay(value: object): value is UsageByDay {
+    return true;
 }
 
 export function UsageByDayFromJSON(json: any): UsageByDay {
@@ -53,29 +51,31 @@ export function UsageByDayFromJSON(json: any): UsageByDay {
 }
 
 export function UsageByDayFromJSONTyped(json: any, ignoreDiscriminator: boolean): UsageByDay {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'date': !exists(json, 'date') ? undefined : (new Date(json['date'])),
-        'transactions': !exists(json, 'transactions') ? undefined : json['transactions'],
-        'requests': !exists(json, 'requests') ? undefined : json['requests'],
+        'date': json['date'] == null ? undefined : (new Date(json['date'])),
+        'transactions': json['transactions'] == null ? undefined : json['transactions'],
+        'requests': json['requests'] == null ? undefined : json['requests'],
     };
 }
 
-export function UsageByDayToJSON(value?: UsageByDay | null): any {
-    if (value === undefined) {
-        return undefined;
+export function UsageByDayToJSON(json: any): UsageByDay {
+    return UsageByDayToJSONTyped(json, false);
+}
+
+export function UsageByDayToJSONTyped(value?: UsageByDay | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'date': value.date === undefined ? undefined : (value.date.toISOString().substring(0,10)),
-        'transactions': value.transactions,
-        'requests': value.requests,
+        'date': value['date'] == null ? undefined : ((value['date']).toISOString().substring(0,10)),
+        'transactions': value['transactions'],
+        'requests': value['requests'],
     };
 }
 

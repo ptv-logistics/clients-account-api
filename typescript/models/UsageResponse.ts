@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -12,24 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ApiKeyUsage } from './ApiKeyUsage';
 import {
     ApiKeyUsageFromJSON,
     ApiKeyUsageFromJSONTyped,
     ApiKeyUsageToJSON,
+    ApiKeyUsageToJSONTyped,
 } from './ApiKeyUsage';
 import type { BillingPeriod } from './BillingPeriod';
 import {
     BillingPeriodFromJSON,
     BillingPeriodFromJSONTyped,
     BillingPeriodToJSON,
+    BillingPeriodToJSONTyped,
 } from './BillingPeriod';
 import type { TotalUsage } from './TotalUsage';
 import {
     TotalUsageFromJSON,
     TotalUsageFromJSONTyped,
     TotalUsageToJSON,
+    TotalUsageToJSONTyped,
 } from './TotalUsage';
 
 /**
@@ -61,10 +64,8 @@ export interface UsageResponse {
 /**
  * Check if a given object implements the UsageResponse interface.
  */
-export function instanceOfUsageResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfUsageResponse(value: object): value is UsageResponse {
+    return true;
 }
 
 export function UsageResponseFromJSON(json: any): UsageResponse {
@@ -72,29 +73,31 @@ export function UsageResponseFromJSON(json: any): UsageResponse {
 }
 
 export function UsageResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UsageResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'apiKeys': !exists(json, 'apiKeys') ? undefined : ((json['apiKeys'] as Array<any>).map(ApiKeyUsageFromJSON)),
-        'total': !exists(json, 'total') ? undefined : TotalUsageFromJSON(json['total']),
-        'billingPeriods': !exists(json, 'billingPeriods') ? undefined : ((json['billingPeriods'] as Array<any>).map(BillingPeriodFromJSON)),
+        'apiKeys': json['apiKeys'] == null ? undefined : ((json['apiKeys'] as Array<any>).map(ApiKeyUsageFromJSON)),
+        'total': json['total'] == null ? undefined : TotalUsageFromJSON(json['total']),
+        'billingPeriods': json['billingPeriods'] == null ? undefined : ((json['billingPeriods'] as Array<any>).map(BillingPeriodFromJSON)),
     };
 }
 
-export function UsageResponseToJSON(value?: UsageResponse | null): any {
-    if (value === undefined) {
-        return undefined;
+export function UsageResponseToJSON(json: any): UsageResponse {
+    return UsageResponseToJSONTyped(json, false);
+}
+
+export function UsageResponseToJSONTyped(value?: UsageResponse | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'apiKeys': value.apiKeys === undefined ? undefined : ((value.apiKeys as Array<any>).map(ApiKeyUsageToJSON)),
-        'total': TotalUsageToJSON(value.total),
-        'billingPeriods': value.billingPeriods === undefined ? undefined : ((value.billingPeriods as Array<any>).map(BillingPeriodToJSON)),
+        'apiKeys': value['apiKeys'] == null ? undefined : ((value['apiKeys'] as Array<any>).map(ApiKeyUsageToJSON)),
+        'total': TotalUsageToJSON(value['total']),
+        'billingPeriods': value['billingPeriods'] == null ? undefined : ((value['billingPeriods'] as Array<any>).map(BillingPeriodToJSON)),
     };
 }
 

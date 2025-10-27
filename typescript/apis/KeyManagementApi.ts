@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -50,21 +50,23 @@ export class KeyManagementApi extends runtime.BaseAPI {
      * Create a new API key.
      */
     async createApiKeyRaw(requestParameters: CreateApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiKeyResponse>> {
-        if (requestParameters.description === null || requestParameters.description === undefined) {
-            throw new runtime.RequiredError('description','Required parameter requestParameters.description was null or undefined when calling createApiKey.');
+        if (requestParameters['description'] == null) {
+            throw new runtime.RequiredError(
+                'description',
+                'Required parameter "description" was null or undefined when calling createApiKey().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.description !== undefined) {
-            queryParameters['description'] = requestParameters.description;
+        if (requestParameters['description'] != null) {
+            queryParameters['description'] = requestParameters['description'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-		headerParameters['User-Agent'] = "ptv-generated typescript client";
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["apiKey"] = this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
+            headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -89,21 +91,23 @@ export class KeyManagementApi extends runtime.BaseAPI {
      * Delete an API key.
      */
     async deleteApiKeyRaw(requestParameters: DeleteApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.apiKey === null || requestParameters.apiKey === undefined) {
-            throw new runtime.RequiredError('apiKey','Required parameter requestParameters.apiKey was null or undefined when calling deleteApiKey.');
+        if (requestParameters['apiKey'] == null) {
+            throw new runtime.RequiredError(
+                'apiKey',
+                'Required parameter "apiKey" was null or undefined when calling deleteApiKey().'
+            );
         }
 
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-		headerParameters['User-Agent'] = "ptv-generated typescript client";
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["apiKey"] = this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
+            headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/api-keys/{apiKey}`.replace(`{${"apiKey"}}`, encodeURIComponent(String(requestParameters.apiKey))),
+            path: `/api-keys/{apiKey}`.replace(`{${"apiKey"}}`, encodeURIComponent(String(requestParameters['apiKey']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -126,10 +130,9 @@ export class KeyManagementApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-		headerParameters['User-Agent'] = "ptv-generated typescript client";
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["apiKey"] = this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
+            headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -154,29 +157,34 @@ export class KeyManagementApi extends runtime.BaseAPI {
      * Update the description of an API key.
      */
     async updateApiKeyRaw(requestParameters: UpdateApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ApiKeyResponse>> {
-        if (requestParameters.apiKey === null || requestParameters.apiKey === undefined) {
-            throw new runtime.RequiredError('apiKey','Required parameter requestParameters.apiKey was null or undefined when calling updateApiKey.');
+        if (requestParameters['apiKey'] == null) {
+            throw new runtime.RequiredError(
+                'apiKey',
+                'Required parameter "apiKey" was null or undefined when calling updateApiKey().'
+            );
         }
 
-        if (requestParameters.description === null || requestParameters.description === undefined) {
-            throw new runtime.RequiredError('description','Required parameter requestParameters.description was null or undefined when calling updateApiKey.');
+        if (requestParameters['description'] == null) {
+            throw new runtime.RequiredError(
+                'description',
+                'Required parameter "description" was null or undefined when calling updateApiKey().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.description !== undefined) {
-            queryParameters['description'] = requestParameters.description;
+        if (requestParameters['description'] != null) {
+            queryParameters['description'] = requestParameters['description'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-		headerParameters['User-Agent'] = "ptv-generated typescript client";
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["apiKey"] = this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
+            headerParameters["apiKey"] = await this.configuration.apiKey("apiKey"); // apiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/api-keys/{apiKey}`.replace(`{${"apiKey"}}`, encodeURIComponent(String(requestParameters.apiKey))),
+            path: `/api-keys/{apiKey}`.replace(`{${"apiKey"}}`, encodeURIComponent(String(requestParameters['apiKey']))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,

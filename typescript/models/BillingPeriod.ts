@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,10 +36,8 @@ export interface BillingPeriod {
 /**
  * Check if a given object implements the BillingPeriod interface.
  */
-export function instanceOfBillingPeriod(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfBillingPeriod(value: object): value is BillingPeriod {
+    return true;
 }
 
 export function BillingPeriodFromJSON(json: any): BillingPeriod {
@@ -47,27 +45,29 @@ export function BillingPeriodFromJSON(json: any): BillingPeriod {
 }
 
 export function BillingPeriodFromJSONTyped(json: any, ignoreDiscriminator: boolean): BillingPeriod {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'startDate': !exists(json, 'startDate') ? undefined : (new Date(json['startDate'])),
-        'endDate': !exists(json, 'endDate') ? undefined : (new Date(json['endDate'])),
+        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
+        'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
     };
 }
 
-export function BillingPeriodToJSON(value?: BillingPeriod | null): any {
-    if (value === undefined) {
-        return undefined;
+export function BillingPeriodToJSON(json: any): BillingPeriod {
+    return BillingPeriodToJSONTyped(json, false);
+}
+
+export function BillingPeriodToJSONTyped(value?: BillingPeriod | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'startDate': value.startDate === undefined ? undefined : (value.startDate.toISOString().substring(0,10)),
-        'endDate': value.endDate === undefined ? undefined : (value.endDate.toISOString().substring(0,10)),
+        'startDate': value['startDate'] == null ? undefined : ((value['startDate']).toISOString().substring(0,10)),
+        'endDate': value['endDate'] == null ? undefined : ((value['endDate']).toISOString().substring(0,10)),
     };
 }
 

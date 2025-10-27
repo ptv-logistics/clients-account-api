@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ServiceUsage } from './ServiceUsage';
 import {
     ServiceUsageFromJSON,
     ServiceUsageFromJSONTyped,
     ServiceUsageToJSON,
+    ServiceUsageToJSONTyped,
 } from './ServiceUsage';
 
 /**
@@ -67,10 +68,8 @@ export interface ApiKeyUsage {
 /**
  * Check if a given object implements the ApiKeyUsage interface.
  */
-export function instanceOfApiKeyUsage(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfApiKeyUsage(value: object): value is ApiKeyUsage {
+    return true;
 }
 
 export function ApiKeyUsageFromJSON(json: any): ApiKeyUsage {
@@ -78,35 +77,37 @@ export function ApiKeyUsageFromJSON(json: any): ApiKeyUsage {
 }
 
 export function ApiKeyUsageFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApiKeyUsage {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'apiKey': !exists(json, 'apiKey') ? undefined : json['apiKey'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'deleted': !exists(json, 'deleted') ? undefined : json['deleted'],
-        'services': !exists(json, 'services') ? undefined : ((json['services'] as Array<any>).map(ServiceUsageFromJSON)),
-        'transactions': !exists(json, 'transactions') ? undefined : json['transactions'],
-        'requests': !exists(json, 'requests') ? undefined : json['requests'],
+        'apiKey': json['apiKey'] == null ? undefined : json['apiKey'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'deleted': json['deleted'] == null ? undefined : json['deleted'],
+        'services': json['services'] == null ? undefined : ((json['services'] as Array<any>).map(ServiceUsageFromJSON)),
+        'transactions': json['transactions'] == null ? undefined : json['transactions'],
+        'requests': json['requests'] == null ? undefined : json['requests'],
     };
 }
 
-export function ApiKeyUsageToJSON(value?: ApiKeyUsage | null): any {
-    if (value === undefined) {
-        return undefined;
+export function ApiKeyUsageToJSON(json: any): ApiKeyUsage {
+    return ApiKeyUsageToJSONTyped(json, false);
+}
+
+export function ApiKeyUsageToJSONTyped(value?: ApiKeyUsage | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'apiKey': value.apiKey,
-        'description': value.description,
-        'deleted': value.deleted,
-        'services': value.services === undefined ? undefined : ((value.services as Array<any>).map(ServiceUsageToJSON)),
-        'transactions': value.transactions,
-        'requests': value.requests,
+        'apiKey': value['apiKey'],
+        'description': value['description'],
+        'deleted': value['deleted'],
+        'services': value['services'] == null ? undefined : ((value['services'] as Array<any>).map(ServiceUsageToJSON)),
+        'transactions': value['transactions'],
+        'requests': value['requests'],
     };
 }
 

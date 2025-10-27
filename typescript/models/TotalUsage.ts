@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { TotalServiceUsage } from './TotalServiceUsage';
 import {
     TotalServiceUsageFromJSON,
     TotalServiceUsageFromJSONTyped,
     TotalServiceUsageToJSON,
+    TotalServiceUsageToJSONTyped,
 } from './TotalServiceUsage';
 
 /**
@@ -49,10 +50,8 @@ export interface TotalUsage {
 /**
  * Check if a given object implements the TotalUsage interface.
  */
-export function instanceOfTotalUsage(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfTotalUsage(value: object): value is TotalUsage {
+    return true;
 }
 
 export function TotalUsageFromJSON(json: any): TotalUsage {
@@ -60,29 +59,31 @@ export function TotalUsageFromJSON(json: any): TotalUsage {
 }
 
 export function TotalUsageFromJSONTyped(json: any, ignoreDiscriminator: boolean): TotalUsage {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'services': !exists(json, 'services') ? undefined : ((json['services'] as Array<any>).map(TotalServiceUsageFromJSON)),
-        'transactions': !exists(json, 'transactions') ? undefined : json['transactions'],
-        'requests': !exists(json, 'requests') ? undefined : json['requests'],
+        'services': json['services'] == null ? undefined : ((json['services'] as Array<any>).map(TotalServiceUsageFromJSON)),
+        'transactions': json['transactions'] == null ? undefined : json['transactions'],
+        'requests': json['requests'] == null ? undefined : json['requests'],
     };
 }
 
-export function TotalUsageToJSON(value?: TotalUsage | null): any {
-    if (value === undefined) {
-        return undefined;
+export function TotalUsageToJSON(json: any): TotalUsage {
+    return TotalUsageToJSONTyped(json, false);
+}
+
+export function TotalUsageToJSONTyped(value?: TotalUsage | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'services': value.services === undefined ? undefined : ((value.services as Array<any>).map(TotalServiceUsageToJSON)),
-        'transactions': value.transactions,
-        'requests': value.requests,
+        'services': value['services'] == null ? undefined : ((value['services'] as Array<any>).map(TotalServiceUsageToJSON)),
+        'transactions': value['transactions'],
+        'requests': value['requests'],
     };
 }
 

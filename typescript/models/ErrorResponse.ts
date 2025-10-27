@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CausingError } from './CausingError';
 import {
     CausingErrorFromJSON,
     CausingErrorFromJSONTyped,
     CausingErrorToJSON,
+    CausingErrorToJSONTyped,
 } from './CausingError';
 
 /**
@@ -34,7 +35,13 @@ export interface ErrorResponse {
     description: string;
     /**
      * A constant string that can be used to identify this error class programmatically.
-     * An errorCode can have **details** to provide information in additional properties which are described with the code they apply to. They are of type string unless otherwise specified.
+     * 
+     * If additional information is available for an errorCode, it will be provided as key-value pairs with the parameter **details**. The keys available for a specific errorCode are documented directly with the errorCode. Unless stated otherwise, the values are of type string.
+     * 
+     * As an example, the following errorCode provides one key-value pair in the **details**. The key is called **message**.
+     * * `GENERAL_UNAUTHENTICATED` - Invalid or missing authentication credentials.
+     *   * `message` - An additional error message.
+     * 
      * Note that additional errorCodes as well as the **details** of existing errorCodes may be added at any time. Furthermore, the **description** may change at any time.
      * 
      * **HTTP status code: 400**
@@ -101,13 +108,11 @@ export interface ErrorResponse {
 /**
  * Check if a given object implements the ErrorResponse interface.
  */
-export function instanceOfErrorResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "errorCode" in value;
-    isInstance = isInstance && "traceId" in value;
-
-    return isInstance;
+export function instanceOfErrorResponse(value: object): value is ErrorResponse {
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('errorCode' in value) || value['errorCode'] === undefined) return false;
+    if (!('traceId' in value) || value['traceId'] === undefined) return false;
+    return true;
 }
 
 export function ErrorResponseFromJSON(json: any): ErrorResponse {
@@ -115,7 +120,7 @@ export function ErrorResponseFromJSON(json: any): ErrorResponse {
 }
 
 export function ErrorResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ErrorResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -123,27 +128,29 @@ export function ErrorResponseFromJSONTyped(json: any, ignoreDiscriminator: boole
         'description': json['description'],
         'errorCode': json['errorCode'],
         'traceId': json['traceId'],
-        'errorId': !exists(json, 'errorId') ? undefined : json['errorId'],
-        'causes': !exists(json, 'causes') ? undefined : ((json['causes'] as Array<any>).map(CausingErrorFromJSON)),
-        'details': !exists(json, 'details') ? undefined : json['details'],
+        'errorId': json['errorId'] == null ? undefined : json['errorId'],
+        'causes': json['causes'] == null ? undefined : ((json['causes'] as Array<any>).map(CausingErrorFromJSON)),
+        'details': json['details'] == null ? undefined : json['details'],
     };
 }
 
-export function ErrorResponseToJSON(value?: ErrorResponse | null): any {
-    if (value === undefined) {
-        return undefined;
+export function ErrorResponseToJSON(json: any): ErrorResponse {
+    return ErrorResponseToJSONTyped(json, false);
+}
+
+export function ErrorResponseToJSONTyped(value?: ErrorResponse | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'description': value.description,
-        'errorCode': value.errorCode,
-        'traceId': value.traceId,
-        'errorId': value.errorId,
-        'causes': value.causes === undefined ? undefined : ((value.causes as Array<any>).map(CausingErrorToJSON)),
-        'details': value.details,
+        'description': value['description'],
+        'errorCode': value['errorCode'],
+        'traceId': value['traceId'],
+        'errorId': value['errorId'],
+        'causes': value['causes'] == null ? undefined : ((value['causes'] as Array<any>).map(CausingErrorToJSON)),
+        'details': value['details'],
     };
 }
 

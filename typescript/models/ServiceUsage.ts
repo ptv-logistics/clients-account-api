@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Account API
+ * Account
  * With the Account service you can manage your API keys and track their usage. It is important to note that unlike all other APIs, the Account API needs a master API key for authentication. For more details consult the [concept](./concepts/api-key-management-and-usage).
  *
  * The version of the OpenAPI document: 1.0
@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { UsageByDay } from './UsageByDay';
 import {
     UsageByDayFromJSON,
     UsageByDayFromJSONTyped,
     UsageByDayToJSON,
+    UsageByDayToJSONTyped,
 } from './UsageByDay';
 
 /**
@@ -43,10 +44,8 @@ export interface ServiceUsage {
 /**
  * Check if a given object implements the ServiceUsage interface.
  */
-export function instanceOfServiceUsage(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfServiceUsage(value: object): value is ServiceUsage {
+    return true;
 }
 
 export function ServiceUsageFromJSON(json: any): ServiceUsage {
@@ -54,27 +53,29 @@ export function ServiceUsageFromJSON(json: any): ServiceUsage {
 }
 
 export function ServiceUsageFromJSONTyped(json: any, ignoreDiscriminator: boolean): ServiceUsage {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'days': !exists(json, 'days') ? undefined : ((json['days'] as Array<any>).map(UsageByDayFromJSON)),
+        'name': json['name'] == null ? undefined : json['name'],
+        'days': json['days'] == null ? undefined : ((json['days'] as Array<any>).map(UsageByDayFromJSON)),
     };
 }
 
-export function ServiceUsageToJSON(value?: ServiceUsage | null): any {
-    if (value === undefined) {
-        return undefined;
+export function ServiceUsageToJSON(json: any): ServiceUsage {
+    return ServiceUsageToJSONTyped(json, false);
+}
+
+export function ServiceUsageToJSONTyped(value?: ServiceUsage | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'name': value.name,
-        'days': value.days === undefined ? undefined : ((value.days as Array<any>).map(UsageByDayToJSON)),
+        'name': value['name'],
+        'days': value['days'] == null ? undefined : ((value['days'] as Array<any>).map(UsageByDayToJSON)),
     };
 }
 
